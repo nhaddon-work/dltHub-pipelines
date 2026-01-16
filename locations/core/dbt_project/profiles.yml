@@ -1,0 +1,25 @@
+snowflake:
+  target: "{{ env_var('OS_ENV') }}"
+  outputs:
+    dev:
+      type: snowflake
+      threads: 1
+      account: "pitchbook"
+      user: "{{ env_var('SNOWFLAKE_USER') }}"
+      private_key_path: "{{ env_var('TARGET_SNOWFLAKE_PRIVATE_KEY_FILE') }}"
+      private_key_passphrase: "{{ env_var('TARGET_SNOWFLAKE_PRIVATE_KEY_FILE_PWD') }}"
+      role: BI_ELT
+      warehouse: LOADING_WH
+      database: BASE_DEV
+      schema: LOCATION
+    prod:
+      type: snowflake
+      threads: 1
+      account: "pitchbook"
+      user: "{{ env_var('SNOWFLAKE_USER') }}"
+      private_key_path: "{{ env_var('TARGET_SNOWFLAKE_PRIVATE_KEY_FILE') }}"
+      private_key_passphrase: "{{ env_var('TARGET_SNOWFLAKE_PRIVATE_KEY_FILE_PWD') }}"
+      role: BI_ELT
+      warehouse: LOADING_WH
+      database: BASE
+      schema: LOCATION

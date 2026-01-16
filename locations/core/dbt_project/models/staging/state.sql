@@ -1,0 +1,10 @@
+SELECT ID,
+       NAME,
+       COUNTRY_ID,
+       COUNTRY_CODE,
+       ISO2,
+       TYPE,
+       LATITUDE,
+       LONGITUDE,
+       CURRENT_TIMESTAMP AS LAST_UPDATED_DATETIME
+FROM {{ env_var('SNOWFLAKE_DATABASE') }}.{{ env_var('SNOWFLAKE_SCHEMA') }}.STATES

@@ -1,0 +1,14 @@
+# Standard CI/CD pipeline for Airflow pipelines.
+# For documentation and options, see the [README](https://gitlab.com/pitchbook/business-intelligence/devops/cicd/airflow-pipeline/-/blob/master/README.md).
+# For other teams, replace "business-intelligence" with "data-intelligence", "demand-generation",
+# or "marketing-analytics".
+include:
+- project: ${AIRFLOW_PIPELINE_CICD_REPO}
+  file: business-intelligence-tag.yml
+
+variables:
+  # ECR repo and key in pipeline_image_tags.json
+  # Match the GitLab location for easier tracing. For example:
+  #   GITLAB: https://gitlab.com/pitchbook/business-intelligence/products/team-pipelines/bi/snapshot
+  #   IMAGE_NAME: products/team-pipelines/bi/snapshot
+  IMAGE_NAME: pipelines/snowflake/inbound_raw/location
