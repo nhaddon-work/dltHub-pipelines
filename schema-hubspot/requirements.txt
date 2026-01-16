@@ -1,0 +1,4 @@
+dlt[snowflake]>=0.5.1
+keyring==25.6.0
+dbt-snowflake==1.9.4
+dbt-core==1.9.4

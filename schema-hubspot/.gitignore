@@ -1,0 +1,46 @@
+# ignore secrets, virtual environments and typical python compilation artifacts
+secrets.toml
+# ignore basic python artifacts
+
+**/__pycache__/
+**/*.py[cod]
+**/*$py.class
+# ignore duckdb
+*.duckdb
+*.wal
+
+# IDE
+.vscode
+.idea/
+
+# Cache
+*__pycache__/
+.cache/
+*.pyc
+.DS_Store
+
+# Test files
+.coverage
+.pytest_cache/
+htmlcov/
+src/tests/load/*.csv
+*.ipynb
+
+# Virtualenv
+local/
+venv/
+
+# Credentials
+core/creds/
+*.env
+secrets.toml
+config.toml
+
+# DBT metadata:
+core/transform/target/
+core/transform/dbt_packages/
+core/transform/logs/
+core/dbt_packages
+core/target
+core/logs
+*.log
