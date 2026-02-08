@@ -15,10 +15,8 @@ schema = os.environ.get('SNOWFLAKE_SCHEMA')
 # shared key and headers, uncomment when running locally
 # api_key = dlt.secrets.get("sources.country_state_city.api_key")
 
-# Set secrets here since we can't upload the secrets toml file
 dlt.secrets["destination.snowflake.credentials.private_key_passphrase"] = os.environ["TARGET_SNOWFLAKE_PRIVATE_KEY_FILE_PWD"]
 
-# Not sure why these can't be passed to the config file at all but trying this now
 dlt.config["destination.snowflake.credentials.database"] = os.environ["SNOWFLAKE_DATABASE"]
 dlt.config["destination.snowflake.credentials.schema"] = os.environ["SNOWFLAKE_SCHEMA"]
 dlt.config["destination.snowflake.credentials.warehouse"] = os.environ["SNOWFLAKE_WAREHOUSE"]
@@ -96,26 +94,6 @@ def fetch_cities(states_data, headers):
         if response.status_code == 200:
             cities = response.json()
             for city in cities:
-                # For each city, add in another API here to get the population data as requested for CDP abstraction
-                # using name, admin code and country to find the exact match in the other API
-                # url = (
-                #     "https://public.opendatasoft.com/api/explore/v2.1/catalog/datasets/"
-                #     "geonames-all-cities-with-a-population-1000/records"
-                #     f"?where=name=\"{city['name']}\"%20AND%20country_code=\"{country_iso2}\"%20AND%20admin1_code=\"{state_iso2}\"&limit=1"
-                # )
-                #
-                # population = None
-                # try:
-                #     resp = requests.get(url)
-                #     if resp.status_code == 200:
-                #         results = resp.json().get("results", [])
-                #         if results:
-                #             population = results[0].get("population")
-                # except Exception as e:
-                #     print(f"Error fetching population for {city['name']}: {e} country_code=\"{country_iso2}\" admin1_code=\"{state_iso2}")
-                # Switching back to not including population for now to avoid extra API calls and complexity, use flat file for now as
-                # this API call will require 15 hrs to finish in Dag
-
                 yield {
                     'country_iso2': country_iso2,
                     'state_iso2': state_iso2,
